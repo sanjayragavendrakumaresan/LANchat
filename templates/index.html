@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5fa">
+  <meta name="description" content="Private real-time chat on your local network.">
+  <title>{{ room_name }} · Local Chat</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/chat.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="chat-card" aria-label="Local network chat">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">L</div>
+          <div><h1>Local Chat</h1><p>Private to your network</p></div>
+        </div>
+        <p class="room-label">Current room</p>
+        <div class="room-name">{{ room_name }}</div>
+        <div class="online-heading"><span>Online members</span><span class="online-count" id="online-count">0</span></div>
+        <div class="user-list" id="user-list" aria-live="polite"></div>
+        <div class="sidebar-footer">Messages stay on this host and are kept in memory while it runs.</div>
+      </aside>
+      <section class="chat-panel" aria-label="Chat room">
+        <header class="chat-header">
+          <div><h2 class="chat-title">Room conversation</h2><p class="chat-subtitle">A real-time space on your Wi-Fi or LAN</p></div>
+          <span class="connection-state offline" id="connection-state">Not connected</span>
+        </header>
+        <div class="chat-feed" id="chat-feed" role="log" aria-live="polite" aria-relevant="additions">
+          <div class="empty-state">Choose a username to join the room and see the conversation.</div>
+        </div>
+        <div class="composer-wrap">
+          <form class="composer" id="message-form" autocomplete="off">
+            <input id="message-input" type="text" maxlength="2000" placeholder="Write a message…" aria-label="Write a message" disabled>
+            <button class="send-button" id="send-button" type="submit" aria-label="Send message" disabled>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12 20 4l-5 16-3.3-6.7L4 12Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m11.7 13.3 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div class="overlay" id="join-overlay" role="dialog" aria-modal="true" aria-labelledby="join-title">
+    <form class="join-card" id="join-form" autocomplete="off">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">L</div><div><h1>Local Chat</h1><p>Private to your network</p></div></div>
+      <h2 id="join-title">Join the conversation</h2>
+      <p>Pick a name so people on this local network know who’s here.</p>
+      <label for="username-input">Your display name</label>
+      <input id="username-input" name="username" type="text" maxlength="24" placeholder="e.g. Alex" required autofocus>
+      <button type="submit">Join room</button>
+    </form>
+  </div>
+</body>
+</html>
